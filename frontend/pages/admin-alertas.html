@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel de Alertas</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        form { background: #f5f5f5; padding: 20px; border-radius: 8px; }
+        label { display: block; margin: 10px 0 5px; }
+        input, textarea, select { width: 100%; padding: 8px; margin-bottom: 10px; }
+        button { background: #0066cc; color: white; border: none; padding: 10px 15px; cursor: pointer; }
+        .alerta { background: #fff; padding: 15px; margin: 10px 0; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <h1>Cadastrar Novo Alerta</h1>
+    <form id="formAlerta">
+        <label>Tipo:</label>
+        <select name="tipo" required>
+            <option value="deslizamento">Deslizamento</option>
+            <option value="rachadura">Rachadura</option>
+            <option value="desabamento">Desabamento</option>
+        </select>
+
+        <label>Bairro:</label>
+        <input type="text" name="bairro" required>
+
+        <label>Rua (opcional):</label>
+        <input type="text" name="rua">
+
+        <label>Descrição:</label>
+        <textarea name="descricao" rows="3" required></textarea>
+
+        <label>Gravidade:</label>
+        <select name="gravidade" required>
+            <option value="baixa">Baixa</option>
+            <option value="media" selected>Média</option>
+            <option value="alta">Alta</option>
+        </select>
+
+        <button type="submit">Cadastrar Alerta</button>
+    </form>
+
+    <h2>Alertas Recentes</h2>
+    <div id="listaAlertas"></div>
+
+    <script>
+        // Cadastrar novo alerta
+        document.getElementById('formAlerta').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                tipo: e.target.tipo.value,
+                localizacao: {
+                    bairro: e.target.bairro.value,
+                    rua: e.target.rua.value
+                },
+                descricao: e.target.descricao.value,
+                gravidade: e.target.gravidade.value
+            };
+
+            try {
+                const response = await fetch('http://localhost:5000/api/alertas', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('Alerta cadastrado!');
+                    e.target.reset();
+                    carregarAlertas();
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Erro ao cadastrar');
+            }
+        });
+
+        // Listar alertas
+        async function carregarAlertas() {
+            const response = await fetch('http://localhost:5000/api/alertas');
+            const { data } = await response.json();
+            
+            const lista = document.getElementById('listaAlertas');
+            lista.innerHTML = data.map(alerta => `
+                <div class="alerta">
+                    <h3>${alerta.tipo.toUpperCase()} - ${alerta.localizacao.bairro}</h3>
+                    <p>${alerta.descricao}</p>
+                    <p><strong>Gravidade:</strong> ${alerta.gravidade}</p>
+                    <small>${new Date(alerta.criadoEm).toLocaleString()}</small>
+                </div>
+            `).join('');
+        }
+
+        // Carrega alertas ao abrir a página
+        carregarAlertas();
+    </script>
+</body>
+</html>

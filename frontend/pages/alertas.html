@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alertas Geológicos</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .alerta { 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            padding: 15px; 
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .alta { border-left: 5px solid #e74c3c; }
+        .media { border-left: 5px solid #f39c12; }
+        .baixa { border-left: 5px solid #2ecc71; }
+        .filtros { margin-bottom: 20px; }
+        .alerta img { max-width: 100%; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Alertas Geológicos</h1>
+    
+    <div class="filtros">
+        <select id="filtro-gravidade">
+            <option value="">Todas as gravidades</option>
+            <option value="alta">Alta</option>
+            <option value="media">Média</option>
+            <option value="baixa">Baixa</option>
+        </select>
+        <button id="btn-atualizar">Atualizar</button>
+    </div>
+
+    <div id="lista-alertas">
+        <!-- Alertas serão carregados aqui via JavaScript -->
+    </div>
+
+    <script>
+        async function carregarAlertas(filtro = {}) {
+            try {
+                const response = await fetch('/api/alertas');
+                const { data } = await response.json();
+                
+                const lista = document.getElementById('lista-alertas');
+                lista.innerHTML = data.map(alerta => `
+                    <div class="alerta ${alerta.gravidade}">
+                        <h3>${alerta.tipo.toUpperCase()} - ${alerta.localizacao.bairro}</h3>
+                        <p>${alerta.descricao}</p>
+                        <p><strong>Gravidade:</strong> ${alerta.gravidade}</p>
+                        ${alerta.imagem ? `<img src="/uploads/${alerta.imagem}" alt="Imagem do alerta">` : ''}
+                        <small>${new Date(alerta.criadoEm).toLocaleString()}</small>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Erro ao carregar alertas:', error);
+                document.getElementById('lista-alertas').innerHTML = 
+                    '<p style="color:red">Erro ao carregar alertas</p>';
+            }
+        }
+
+        // Filtros
+        document.getElementById('btn-atualizar').addEventListener('click', () => {
+            const gravidade = document.getElementById('filtro-gravidade').value;
+            carregarAlertas(gravidade ? { gravidade } : {});
+        });
+
+        // Carrega os alertas quando a página é aberta
+        window.addEventListener('DOMContentLoaded', carregarAlertas);
+    </script>
+</body>
+</html>
