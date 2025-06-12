@@ -1,0 +1,102 @@
+/* Reset básico e fontes */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
+body {
+  background-color: #f0f0f0;
+}
+
+/* Header */
+#header {
+  text-align: center;
+  background-color: #0ea47a;
+  padding: 10px 0;
+}
+
+.header-img {
+  height: 80px;
+}
+
+/* Seção principal */
+#seçao-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1a8164;
+  color: white;
+  padding: 80px 20px;
+}
+
+#seçao-principal h1 {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#seçao-principal p {
+  font-size: 20px;
+  max-width: 900px;
+  text-align: center;
+}
+
+/* Seções de conteúdo */
+section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 60px 40px;
+  background-color: #ffffff;
+  color: #222;
+  gap: 40px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+
+
+.texto, #desabamento-texto {
+  max-width: 700px;
+  font-weight: bold;
+}
+
+.texto h2, #desabamento-texto h2 {
+  font-size: 36px;
+  color: #0ea47a;
+  margin-bottom: 20px;
+}
+
+.texto p, #desabamento-texto p {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.texto h3, #desabamento-texto h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #166b54;
+}
+
+ul {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+li {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.imagem, #desabamento-imagemDiv {
+  flex-shrink: 0;
+}
+
+.imagem-padrao, .desabamento-img {
+  width: 500px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+

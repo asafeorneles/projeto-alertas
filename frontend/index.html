@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Alertas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background: #f0f0f0;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #0066cc;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sistema de Monitoramento de Alertas</h1>
+    
+    <nav>
+        <a href="/alertas">Ver Alertas</a>
+        <a href="/criarchamado">Criar Chamado</a>
+        <a href="/admin-alertas">Área Admin</a>
+    </nav>
+
+    <div id="content">
+        <p>Selecione uma das opções acima para navegar pelo sistema.</p>
+    </div>
+
+    <script>
+        // Verifica se está tentando acessar área admin sem login
+        if(window.location.pathname.includes('admin') && !sessionStorage.getItem('basicAuth')) {
+            window.location = '/login';
+        }
+    </script>
+</body>
+</html>
