@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denúncias</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Denuncias.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <section>
+            <a href="">
+                <img class="logo" src="../assets/img/header.png" alt="logo">
+            </a>
+
+            <nav class="navbar">
+                <a href="Conscientização">Página de Conscientização</a>
+                <a href="AlertasG">Alertas Geológicos</a>
+                <a href="AlertasP">Alerta Pluviométrico</a>
+                <a href="denuncias.html">Denúncia de Problemas</a>
+            </nav>
+
+            <div class="icons">
+                <a href="URL_DO_YOUTUBE" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="URL_DO_FACEBOOK" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="URL_DO_INSTAGRAM" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="URL_DO_LINKEDIN" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+
+        </section>
+    </header>
+    <main id="main">
+        <Section class="form-content">
+            <h1>Denúncias</h1>
+            <p>Faça sua denúncia pelo formulário abaixo</p>
+        </Section>
+        <Section class="report-form">
+            <form id="form">
+                <div class="bairro-div">
+                    <label for="bairro">Bairro:</label>
+                    <input type="text" placeholder="informe o bairro" id="bairro" name="bairro">
+                </div>
+                <div class="rua-div">
+                    <label for="rua">Rua:</label>
+                    <input type="text" placeholder="informe a rua" id="rua" name="rua">
+                </div>
+                <div class="relato-div">
+                    <div class="relatoLabel-div"><label for="relato">Relate o ocorrido:</label></div>
+                    <textarea name="relato" id="relato" placeholder="informe seu relato aqui" rows="5" cols="50" maxlength="200"></textarea>
+                </div>
+                <div class="imagem-div">
+                    <label for="imagem">Imagem do ocorrido:</label>
+                    <input type="file" id="imagem" name="imagem" accept="image/*" required>
+                </div>
+                <div class="btn-div">
+                    <button class="btn" type="submit">Enviar</button>
+                </div>
+            </form>
+        </Section>
+    </main>
+
+</body>
+</html>
