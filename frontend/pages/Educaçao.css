@@ -1,25 +1,86 @@
 /* Reset básico e fontes */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Hanken Grotesk', sans-serif;
+:root {
+    --main-color: #0ea47a;
+    --border: 0.1rem solid #0a7557;
+    font-size: 10px;
 }
+
+/* Reset único */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 0.2s linear;
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* HEADER */
+.header {
+    background-color: #28a745;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header a{
+  text-decoration:none;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.logo {
+    width: 150px;
+}
+
+.navbar a {
+    margin: 0 1rem;
+    font-size: 1.8rem;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #2bedb7;
+    border-bottom: 0.1rem solid #2bedb7;
+    padding-bottom: 3px;
+    text-decoration:none;
+}
+
+.icons a {
+    color: #fff;
+    font-size: 2rem;
+    margin-left: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.icons a:hover {
+    color: #2bedb7;
+}
+
 
 body {
   background-color: #f0f0f0;
 }
 
-/* Header */
-#header {
-  text-align: center;
-  background-color: #0ea47a;
-  padding: 10px 0;
-}
-
-.header-img {
-  height: 80px;
-}
 
 /* Seção principal */
 #seçao-principal {
