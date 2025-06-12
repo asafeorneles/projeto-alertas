@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Denuncias.css">
+</head>
+<body>
+    <header id="header">
+        <img src="img/BH Alerta mini.png" class="header-img">
+    </header>
+    <main id="main">
+        <Section class="form-content">
+            <h1>Denúncias</h1>
+            <p>Faça sua denúncia pelo formulário abaixo</p>
+        </Section>
+        <Section class="report-form">
+            <form id="form">
+                <div class="bairro-div">
+                    <label for="bairro">Bairro:</label>
+                    <input type="text" placeholder="informe o bairro" id="bairro" name="bairro">
+                </div>
+                <div class="rua-div">
+                    <label for="rua">Rua:</label>
+                    <input type="text" placeholder="informe a rua" id="rua" name="rua">
+                </div>
+                <div class="relato-div">
+                    <div class="relatoLabel-div"><label for="relato">Relate o ocorrido:</label></div>
+                    <textarea name="relato" id="relato" placeholder="informe seu relato aqui" rows="5" cols="50" maxlength="200"></textarea>
+                </div>
+                <div class="imagem-div">
+                    <label for="imagem">Imagem do ocorrido:</label>
+                    <input type="file" id="imagem" name="imagem" accept="image/*" required>
+                </div>
+                <div class="btn-div">
+                    <button class="btn" type="submit">Enviar</button>
+                </div>
+            </form>
+        </Section>
+    </main>
+
+</body>
+</html>

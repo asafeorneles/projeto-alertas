@@ -1,0 +1,150 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Helvetica;
+
+}
+
+#header{
+    text-align:center;
+    background-color:#0ea47a;
+}
+
+
+body{
+    background-color:#ffffff;
+}
+
+#main {
+    display:flex;
+    color:white;
+    flex-direction:column;
+    background-color:#26c99b;
+    align-items:center;
+    max-width:1400px;
+    min-height:100vh;
+    margin:0 auto;
+}
+
+.form-content{
+    text-align:center;
+}
+
+
+#main h1 {
+    margin-top:100px;
+    font-size:65px;
+}
+
+#main p{
+    font-size:25px;
+    margin-top:25px;
+}
+
+.report-form {
+    display:flex;
+    justify-content:space-around;
+    background-color:#33b691;
+    color:rgb(255, 255, 255);
+    padding:25px;
+    margin-top:20px;
+    border:2px solid black;
+    border-radius:10px;
+}
+
+.report-form label{
+    font-size:25px;
+    font-weight:bold;
+    margin-right:20px;
+}
+
+.report-form input {
+    border:none;
+    border-bottom:2px solid #ccc;
+    padding:10px;
+    font-size:15px;
+    width:400px;
+    transition:0.25s;
+}
+
+
+.report-form input:hover{
+    background-color:rgb(214, 211, 211);
+}
+
+
+.report-form textarea{
+    border-radius:5px;
+    transition:0.25s;
+    font-size:20px;
+}
+
+.report-form textarea:hover{
+    background-color:rgb(214, 211, 211);
+}
+
+
+.report-form div{
+    margin-top:30px;
+}
+
+.btn{
+    padding:20px;
+    font-size:20px;
+    text-transform:uppercase;
+    background-color:#30b690;
+    color:white;
+    border:none;
+    border:1px solid black;
+    transition:0.25s;
+    cursor:pointer;
+}
+
+.btn-div {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.btn:hover {
+    background-color:white;
+    color:rgb(45, 131, 45);
+    transform:scale(1.02);
+}
+
+#imagem{
+    padding:20px;
+    font-size:20px;
+    text-transform:uppercase;
+    background-color:#2c856b;
+    color:white;
+    border:none;
+    border:1px solid black;
+    transition:0.25s;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+#imagem:hover{
+    background-color:#349e7e;
+}
+
+#imagem::file-selector-button {
+    padding:20px;
+    font-size:15px;
+    text-transform:uppercase;
+    background-color:#28a783;
+    border:none;
+    border:1px solid black;
+    border-radius:5px;
+    cursor:pointer;
+    color:white;
+    font-weight:bolder;
+    transition:0.25s;
+}
+
+#imagem::file-selector-button:hover {
+    background-color:#158a69;
+}
+
