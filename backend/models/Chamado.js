@@ -5,7 +5,11 @@ const ChamadoSchema = new mongoose.Schema({
   rua: { type: String, required: true },
   relato: { type: String, required: true },
   midia: { type: String },
-  status: { type: String, default: 'pendente' },
+  status: { 
+    type: String, 
+    enum: ['pendente', 'atendido', 'nao-atendido'], 
+    default: 'pendente' 
+  },
   criadoEm: { type: Date, default: Date.now }
 });
 
