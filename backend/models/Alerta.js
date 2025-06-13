@@ -11,9 +11,18 @@ const AlertaSchema = new mongoose.Schema({
     rua: { type: String }
   },
   descricao: { type: String, required: true },
-  gravidade: { type: String, enum: ['baixa', 'media', 'alta'], default: 'media' },
+  gravidade: { 
+    type: String, 
+    enum: ['baixa', 'media', 'alta'], 
+    default: 'media' 
+  },
   criadoEm: { type: Date, default: Date.now },
-  fonte: { type: String, enum: ['manual', 'api'], required: true }
-});
+  fonte: { 
+    type: String, 
+    enum: ['manual', 'api'], 
+    required: true,
+    default: 'manual'
+  }
+}, { versionKey: false }); // Desabilita o campo __v
 
 module.exports = mongoose.model('Alerta', AlertaSchema);
