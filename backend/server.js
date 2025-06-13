@@ -29,21 +29,20 @@ app.use('/api/alertas', require('./routes/alertas'));
 
 // Rotas para páginas
 app.get('/criarchamado', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/pages.test/criar-chamados.html'));
+  res.sendFile(path.join(__dirname, '../frontend/pages/criar-chamados.html'));
 });
 
 app.get('/chamados', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/pages.test/listar-chamados.html'));
+  res.sendFile(path.join(__dirname, '../frontend/pages/listar-chamados.html'));
 });
 
 app.get('/alertas', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/pages.test/alertas.html'));
+  res.sendFile(path.join(__dirname, '../frontend/pages/alertas.html'));
 });
 
 app.get('/admin-alertas', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/pages.test/admin-alertas.html'));
+  res.sendFile(path.join(__dirname, '../frontend/pages/admin-alertas.html'));
 });
-
 
 // Inicialização do servidor
 const PORT = process.env.PORT || 5000;
