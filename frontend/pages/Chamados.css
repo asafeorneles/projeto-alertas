@@ -1,0 +1,31 @@
+.chamado-card {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            font-size:40px;
+}
+.status-pendente {
+            border-left: 5px solid #ffc107;
+            font-size:40px;
+}
+.status-atendido {
+            border-left: 5px solid #28a745;
+            font-size:40px;
+}
+.status-nao-atendido {
+            border-left: 5px solid #dc3545;
+            font-size:40px;
+}
+.midia-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+            font-size:40px;
+}
+
+/* Importantíssimo para não quebrar os textos do header na página de Chamados */
+.navbar a{
+    width:fit-content;
+    text-decoration:none;
+}

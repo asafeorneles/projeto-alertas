@@ -79,3 +79,210 @@ section a{
 .icons a:hover {
     color: #2bedb7; 
 }
+
+:root {
+    --main-color: #0ea47a;
+    --border: 0.1rem solid #0a7557;
+    font-size: 10px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 0.2s linear;
+    font-family: "Roboto", sans-serif;
+}
+
+body{
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+section{
+    padding: 3rem 2rem;
+    margin: 0 auto;
+    max-width: 1500px;
+}
+
+.header{
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background-color: #28a745;
+}
+
+.logo{
+    width: 150px;
+    transition: transform 0.3s ease;
+}
+
+.header section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+section a{
+    width: 60px;
+    margin: 10px;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+}
+
+.navbar a {
+    margin: 0 1rem;
+    font-size: 1.8rem;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #2bedb7;
+    border-bottom: 0.1rem solid #2bedb7;
+    padding-bottom: 3px; 
+}
+
+.icons a {
+    color: #fff;
+    font-size: 30px;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.icons a:hover {
+    color: #2bedb7; 
+}
+
+/* Media Queries para o cabeçalho */
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+    .header section {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .navbar {
+        margin: 1.5rem 0;
+    }
+    
+    .navbar a {
+        margin: 0 0.8rem;
+        font-size: 1.6rem;
+    }
+    
+    .icons a {
+        font-size: 25px;
+        margin-left: 10px;
+    }
+}
+
+/* Tablets pequenos e celulares grandes (600px - 768px) */
+@media (max-width: 768px) {
+    .logo {
+        width: 120px;
+    }
+    
+    .navbar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .navbar a {
+        margin: 0.5rem;
+        font-size: 1.4rem;
+        padding: 0.5rem;
+    }
+    
+    .icons {
+        margin-top: 1rem;
+    }
+    
+    .icons a {
+        font-size: 22px;
+        margin: 0 8px;
+    }
+}
+
+/* Celulares (480px - 600px) */
+@media (max-width: 600px) {
+    .logo {
+        width: 100px;
+    }
+    
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .navbar a {
+        display: block;
+        margin: 0.5rem 0;
+        font-size: 1.3rem;
+    }
+    
+    .icons {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .icons a {
+        font-size: 20px;
+        margin: 0 5px;
+    }
+}
+
+/* Celulares muito pequenos (até 480px) */
+@media (max-width: 480px) {
+    .header section {
+        padding: 0.5rem;
+    }
+    
+    .logo {
+        width: 80px;
+    }
+    
+    .navbar a {
+        font-size: 1.2rem;
+    }
+    
+    .icons a {
+        font-size: 18px;
+    }
+}
+
+/* Menu hamburguer para telas pequenas */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: none; /* Escondido por padrão */
+    }
+    
+    /* Quando a classe 'active' é adicionada via JavaScript */
+    .navbar.active {
+        display: flex;
+    }
+    
+    .navbar {
+        display: none;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .menu-toggle {
+        display: block;
+        color: white;
+        font-size: 2.5rem;
+        cursor: pointer;
+        margin: 1rem;
+    }
+}

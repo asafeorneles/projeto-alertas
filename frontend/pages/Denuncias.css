@@ -3,9 +3,7 @@
     padding:0;
     box-sizing:border-box;
     font-family:Helvetica;
-
 }
-
 
 body{
     background-color:#ffffff;
@@ -25,7 +23,6 @@ body{
 .form-content{
     text-align:center;
 }
-
 
 #main h1 {
     margin-top:100px;
@@ -63,11 +60,9 @@ body{
     transition:0.25s;
 }
 
-
 .report-form input:hover{
     background-color:rgb(214, 211, 211);
 }
-
 
 .report-form textarea{
     border-radius:5px;
@@ -78,7 +73,6 @@ body{
 .report-form textarea:hover{
     background-color:rgb(214, 211, 211);
 }
-
 
 .report-form div{
     margin-top:30px;
@@ -141,5 +135,137 @@ body{
 
 #imagem::file-selector-button:hover {
     background-color:#158a69;
+}
+
+/* Media Queries para responsividade */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    #main h1 {
+        font-size: 50px;
+        margin-top: 70px;
+    }
+    
+    #main p {
+        font-size: 20px;
+    }
+    
+    .report-form {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    .report-form input {
+        width: 300px;
+    }
+    
+    .report-form textarea {
+        width: 100%;
+    }
+}
+
+/* Tablets pequenos e celulares grandes */
+@media (max-width: 768px) {
+    #main h1 {
+        font-size: 40px;
+        margin-top: 50px;
+    }
+    
+    .report-form {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .report-form div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .report-form label {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .report-form input {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .btn {
+        padding: 15px;
+        font-size: 18px;
+    }
+    
+    #imagem {
+        padding: 15px;
+        font-size: 18px;
+    }
+    
+    #imagem::file-selector-button {
+        padding: 15px;
+        font-size: 14px;
+    }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+    #main h1 {
+        font-size: 30px;
+        margin-top: 40px;
+    }
+    
+    #main p {
+        font-size: 16px;
+    }
+    
+    .report-form {
+        padding: 15px;
+        width: 95%;
+    }
+    
+    .report-form label {
+        font-size: 20px;
+    }
+    
+    .report-form input {
+        font-size: 14px;
+        padding: 8px;
+    }
+    
+    .report-form textarea {
+        font-size: 16px;
+    }
+    
+    .btn {
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    #imagem {
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    #imagem::file-selector-button {
+        padding: 12px;
+        font-size: 12px;
+    }
+}
+
+/* Celulares muito pequenos */
+@media (max-width: 320px) {
+    #main h1 {
+        font-size: 25px;
+    }
+    
+    .report-form label {
+        font-size: 18px;
+    }
+    
+    .report-form input {
+        max-width: 250px;
+    }
 }
 
