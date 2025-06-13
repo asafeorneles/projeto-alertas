@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BH Alerta - Sua voz pela segurança de Belo Horizonte</title>
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --main-color: #26c99b;
+            --secondary-color: #2c856b;
+            --dark-color: #0a7557;
+            --light-color: #baf3c8;
+            --white: #ffffff;
+            --text-color: #333333;
+            --text-light: #777777;
+            font-size: 10px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            transition: all 0.2s linear;
+            font-family: "Roboto", sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: var(--text-color);
+        }
+
+        section {
+            padding: 5rem 2rem;
+            margin: 0 auto;
+            max-width: 1500px;
+        }
+
+        .header {
+            background-color: var(--main-color);
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: var(--white);
+            font-size: 1.6rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: var(--light-color);
+            text-decoration: underline;
+        }
+
+        .icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .icons a {
+            color: var(--white);
+            font-size: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .icons a:hover {
+            color: var(--light-color);
+            transform: scale(1.2);
+        }
+
+        /* Hero Section */
+        #home {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(to right, var(--light-color), #7dd391);
+            color: var(--text-color);
+            margin: 0 auto;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tagline {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            font-family: "Bebas Neue", sans-serif;
+        }
+
+        #home h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2.5rem;
+            color: var(--dark-color);
+            line-height: 1.2;
+        }
+
+        #home p {
+            font-size: 1.8rem;
+            margin-bottom: 4rem;
+            color: var(--text-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 1.5rem 3.5rem;
+            border-radius: 8px;
+            font-size: 1.6rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Features Section */
+        #features-section {
+            padding: 6rem 2rem;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            color: var(--dark-color);
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .feature-card i {
+            font-size: 4.5rem;
+            color: var(--main-color);
+            margin-bottom: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card p {
+            font-size: 1.6rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .feature-card .btn {
+            padding: 1rem 2rem;
+            font-size: 1.4rem;
+            width: auto;
+        }
+
+        /* About Section */
+        .sobre {
+            background: linear-gradient(to right, var(--light-color), #7dd391);
+            padding: 5rem 2rem;
+        }
+
+        .sobre .back {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .container-img {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container-img img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .sobre .content {
+            flex: 1;
+            padding: 3rem;
+            color: var(--white);
+        }
+
+        .sobre .content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--dark-color);
+        }
+
+        .sobre .content p {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .sobre .content span {
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, var(--dark-color), var(--main-color));
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .footer-img img {
+            height: 80px;
+        }
+
+        .footer-icons {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-icons a {
+            color: var(--white);
+            font-size: 2.5rem;
+            transition: all 0.3s;
+        }
+
+        .footer-icons a:hover {
+            color: var(--light-color);
+            transform: scale(1.2);
+        }
+
+        .copyright {
+            color: var(--white);
+            font-size: 1.4rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .sobre .back {
+                flex-direction: column;
+            }
+            
+            .container-img, .sobre .content {
+                padding: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header section {
+                flex-direction: column;
+                gap: 2rem;
+                padding: 1.5rem;
+            }
+            
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .tagline {
+                font-size: 3rem;
+            }
+            
+            #home h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .tagline {
+                font-size: 2.5rem;
+            }
+            
+            #home h2 {
+                font-size: 2rem;
+            }
+            
+            .feature-card {
+                padding: 2rem;
+            }
+            
+            .sobre .content h3 {
+                font-size: 2rem;
+            }
+            
+            .sobre .content p {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <section>
+            <a href="/">
+                <img class="logo" src="/assets/img/header.png" alt="BH Alerta Logo">
+            </a>
+
+            <nav class="navbar">
+                <a href="/educaçao.html">Página de Conscientização</a>
+                <a href="/AlertasG">Alertas Geológicos</a>
+                <a href="/AlertasP">Alerta Pluviométrico</a>
+                <a href="/denuncias.html">Denúncia de Problemas</a>
+            </nav>
+
+            <div class="icons">
+                <a href="URL_DO_YOUTUBE" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="URL_DO_FACEBOOK" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="URL_DO_INSTAGRAM" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/asafeorneles/projeto-alertas.git" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </section>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home">
+            <div class="content">
+                <p class="tagline">DENUNCIE. PROTEJA. TRANSFORME.</p>
+                <h2>Sua voz em defesa do meio ambiente e da segurança em Belo Horizonte.</h2>
+                <p>Seja um agente de mudança! Utilize o BH Alerta para denunciar problemas de saneamento básico, riscos de desabamentos, e outras complicações ambientais que ameaçam a nossa comunidade e o nosso ecossistema.</p>
+                <a href="/denuncias.html" class="btn">Fazer uma Denúncia Agora</a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features-section">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <div class="features-container">
+                <div class="feature-card">
+                    <i class="fas fa-hand-holding-water"></i>
+                    <h3>Saneamento Básico</h3>
+                    <p>Identifique e denuncie esgoto a céu aberto, descarte irregular de lixo, e falta de infraestrutura sanitária que afeta a saúde pública.</p>
+                    <a href="https://www.aguaesaneamento.org.br/municipios-e-saneamento/mg/belo-horizonte" target="_blank" class="btn" rel="external">Denunciar Saneamento</a>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mountain"></i>
+                    <h3>Riscos Geológicos</h3>
+                    <p>Alerta-nos sobre sinais de deslizamentos de terra, trincas em encostas, ou qualquer instabilidade que possa levar a desabamentos.</p>
+                    <a href="/AlertasG" class="btn">Ver Alertas Geológicos</a>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-cloud-showers-heavy"></i>
+                    <h3>Complicações Ambientais</h3>
+                    <p>Reporte poluição de rios, desmatamento ilegal, queimadas, e outras agressões ao nosso meio ambiente.</p>
+                    <a href="/AlertasP" class="btn">Ver Alerta Pluviométrico</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="sobre">
+            <div class="back">
+                <div class="container-img">
+                    <img src="/assets/img/header.png" alt="Sobre o BH Alerta">
+                </div>
+                <div class="content">
+                    <h3>QUEM SOMOS</h3>
+                    <p>O BH Alerta é uma plataforma criada para os cidadãos de Belo Horizonte denunciarem irregularidades, crimes menores ou problemas urbanos de forma direta, segura e eficiente. Nossa iniciativa busca superar a burocracia e a desinformação, garantindo que cada denúncia seja tratada com confidencialidade e encaminhada às autoridades competentes.</p>
+                    <p>Acreditamos que cada denúncia é um ato de cidadania que gera um impacto positivo. Junte-se a nós nessa jornada para transformar Belo Horizonte.</p>
+                    <h3><span>Denuncie. Proteja. Transforme.</span></h3>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-img">
+                <img src="/assets/img/BH Alerta mini.png" alt="BH Alerta">
+            </div>
+            <div class="footer-icons">
+                <a href="URL_DO_YOUTUBE" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="URL_DO_FACEBOOK" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="URL_DO_INSTAGRAM" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/asafeorneles/projeto-alertas.git" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <p class="copyright">© 2023 BH Alerta. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Adicione scripts JS aqui se necessário
+        document.addEventListener('DOMContentLoaded', function() {
+            // Suavizar rolagem para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
