@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Alertas</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto", Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #26c99b;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .icons a {
+            color: white;
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+
+        .icons a:hover {
+            transform: scale(1.2);
+        }
+
+        #main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1400px;
+            min-height: calc(100vh - 100px);
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: white;
+        }
+
+        #main h1 {
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #26c99b;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: rgba(255,255,255,0.9);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #2c856b;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #349e7e;
+            transform: translateY(-2px);
+        }
+
+        #message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+            display: block !important;
+        }
+
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+            display: block !important;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header section {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            #main h1 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #main h1 {
+                font-size: 1.8rem;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 10px;
+            }
+
+            button {
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <section>
+            <a href="/" target="_self">
+                <img class="logo" src="/assets/img/header.png" alt="logo">
+            </a>
+
+            <nav class="navbar">
+                <a href="educaçao.html" target="_self">Página de Conscientização</a>
+                <a href="AlertasG">Alertas Geológicos</a>
+                <a href="AlertasP">Alerta Pluviométrico</a>
+                <a href="denuncias.html" target="_self">Denúncia de Problemas</a>
+            </nav>
+
+            <div class="icons">
+                <a href="URL_DO_YOUTUBE" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="URL_DO_FACEBOOK" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="URL_DO_INSTAGRAM" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="URL_DO_LINKEDIN" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </section>
+    </header>
+
+    <main id="main">
+        <h1>Cadastrar Novo Alerta</h1>
+        
+        <div class="form-container">
+            <div class="form-group">
+                <label for="tipo">Tipo de Alerta *</label>
+                <select id="tipo" required>
+                    <option value="">Selecione o tipo...</option>
+                    <option value="deslizamento">Deslizamento</option>
+                    <option value="rachadura">Rachadura</option>
+                    <option value="desabamento">Desabamento</option>
+                    <option value="outros">Outros</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="bairro">Bairro *</label>
+                <input type="text" id="bairro" placeholder="Nome do bairro" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="rua">Rua</label>
+                <input type="text" id="rua" placeholder="Nome da rua (opcional)">
+            </div>
+            
+            <div class="form-group">
+                <label for="descricao">Descrição *</label>
+                <textarea id="descricao" placeholder="Descreva o alerta com detalhes" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="gravidade">Gravidade</label>
+                <select id="gravidade">
+                    <option value="media">Média</option>
+                    <option value="baixa">Baixa</option>
+                    <option value="alta">Alta</option>
+                </select>
+            </div>
+            
+            <button onclick="cadastrarAlerta()">Cadastrar Alerta</button>
+            
+            <div id="message"></div>
+        </div>
+    </main>
+
+    <script>
+        async function cadastrarAlerta() {
+            // Pegar valores dos campos
+            const tipo = document.getElementById('tipo').value;
+            const bairro = document.getElementById('bairro').value;
+            const rua = document.getElementById('rua').value;
+            const descricao = document.getElementById('descricao').value;
+            const gravidade = document.getElementById('gravidade').value;
+            
+            // Validar campos obrigatórios
+            if (!tipo || !bairro || !descricao) {
+                showMessage('Por favor, preencha todos os campos obrigatórios (*)', true);
+                return;
+            }
+            
+            // Criar objeto do alerta
+            const alerta = {
+                tipo: tipo,
+                localizacao: {
+                    bairro: bairro,
+                    rua: rua
+                },
+                descricao: descricao,
+                gravidade: gravidade,
+                fonte: "manual"
+            };
+            
+            try {
+                // Enviar para a API
+                const response = await fetch('/api/alertas', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(alerta)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showMessage('Alerta cadastrado com sucesso!');
+                    // Limpar formulário
+                    document.getElementById('tipo').value = '';
+                    document.getElementById('bairro').value = '';
+                    document.getElementById('rua').value = '';
+                    document.getElementById('descricao').value = '';
+                    document.getElementById('gravidade').value = 'media';
+                } else {
+                    showMessage(`Erro: ${data.error || 'Falha ao cadastrar'}`, true);
+                }
+            } catch (error) {
+                showMessage('Erro ao conectar com o servidor', true);
+                console.error('Erro:', error);
+            }
+        }
+        
+        function showMessage(text, isError = false) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = isError ? 'error' : 'success';
+            
+            // Limpar mensagem após 5 segundos
+            setTimeout(() => {
+                messageDiv.textContent = '';
+                messageDiv.className = '';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

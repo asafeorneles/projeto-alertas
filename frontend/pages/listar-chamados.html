@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Chamados</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto", Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #26c99b;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .icons a {
+            color: white;
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+
+        .icons a:hover {
+            transform: scale(1.2);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Estilos dos chamados */
+        .chamados-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .chamado-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .chamado-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .status-pendente {
+            border-left: 8px solid #f39c12;
+        }
+
+        .status-atendido {
+            border-left: 8px solid #2ecc71;
+        }
+
+        .status-nao-atendido {
+            border-left: 8px solid #e74c3c;
+        }
+
+        .chamado-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .chamado-local {
+            font-size: 1.3rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .chamado-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .status-label-pendente {
+            background-color: #f39c12;
+        }
+
+        .status-label-atendido {
+            background-color: #2ecc71;
+        }
+
+        .status-label-nao-atendido {
+            background-color: #e74c3c;
+        }
+
+        .chamado-relato {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .chamado-midia {
+            margin: 20px 0;
+        }
+
+        .chamado-midia img {
+            max-width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .chamado-midia video {
+            max-width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .chamado-data {
+            color: #777;
+            font-size: 0.9rem;
+            display: block;
+            margin-top: 15px;
+        }
+
+        .chamado-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+        }
+
+        .btn-atendido {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .btn-atendido:hover {
+            background-color: #27ae60;
+        }
+
+        .btn-nao-atendido {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .btn-nao-atendido:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #555;
+            font-size: 1.2rem;
+            grid-column: 1 / -1;
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 40px;
+            color: #e74c3c;
+            font-size: 1.2rem;
+            grid-column: 1 / -1;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 40px;
+            color: #777;
+            font-size: 1.2rem;
+            grid-column: 1 / -1;
+        }
+
+        /* Filtros */
+        .filtros-container {
+            background-color: #26c99b;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filtros-container label {
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .filtros-container select {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .filtros-container button {
+            background-color: #2c856b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .filtros-container button:hover {
+            background-color: #349e7e;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header section {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .chamados-container {
+                grid-template-columns: 1fr;
+            }
+
+            .filtros-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .filtros-container select {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .filtros-container button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title h1 {
+                font-size: 1.8rem;
+            }
+
+            .chamado-local {
+                font-size: 1.1rem;
+            }
+
+            .chamado-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <section>
+            <a href="/" target="_self">
+                <img class="logo" src="/assets/img/header.png" alt="logo">
+            </a>
+
+            <nav class="navbar">
+                <a href="educaçao.html" target="_self">Página de Conscientização</a>
+                <a href="AlertasG">Alertas Geológicos</a>
+                <a href="AlertasP">Alerta Pluviométrico</a>
+                <a href="denuncias.html" target="_self">Denúncia de Problemas</a>
+            </nav>
+
+            <div class="icons">
+                <a href="URL_DO_YOUTUBE" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="URL_DO_FACEBOOK" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="URL_DO_INSTAGRAM" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="URL_DO_LINKEDIN" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </section>
+    </header>
+
+    <div class="container">
+        <div class="page-title">
+            <h1>Lista de Chamados</h1>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filtros-container">
+            <label for="filtro-status">Status:</label>
+            <select id="filtro-status">
+                <option value="">Todos</option>
+                <option value="pendente">Pendente</option>
+                <option value="atendido">Atendido</option>
+                <option value="nao-atendido">Não Atendido</option>
+            </select>
+            <button id="btn-filtrar">Filtrar</button>
+        </div>
+
+        <!-- Container dos chamados -->
+        <div id="chamados-container" class="chamados-container">
+            <div class="loading">Carregando chamados...</div>
+        </div>
+    </div>
+
+    <script>
+        // Função para carregar chamados com filtro
+        async function carregarChamados(filtro = {}) {
+            const container = document.getElementById('chamados-container');
+            container.innerHTML = '<div class="loading">Carregando chamados...</div>';
+            
+            try {
+                // Construir URL com filtros
+                const params = new URLSearchParams();
+                if (filtro.status) params.append('status', filtro.status);
+                
+                const url = `/api/chamados?${params.toString()}`;
+                const response = await fetch(url);
+                const { success, data: chamados } = await response.json();
+                
+                if (!success) throw new Error('Erro ao carregar chamados');
+                
+                if (chamados.length === 0) {
+                    container.innerHTML = '<div class="empty-message">Nenhum chamado encontrado</div>';
+                    return;
+                }
+                
+                container.innerHTML = chamados.map(chamado => `
+                    <div class="chamado-card status-${chamado.status}">
+                        <div class="chamado-header">
+                            <div class="chamado-local">${chamado.rua}, ${chamado.bairro}</div>
+                            <div class="chamado-status status-label-${chamado.status}">
+                                ${formatarStatus(chamado.status)}
+                            </div>
+                        </div>
+                        
+                        <div class="chamado-relato">${chamado.relato}</div>
+                        
+                        ${chamado.midia ? `
+                        <div class="chamado-midia">
+                            ${chamado.midia.endsWith('.mp4') ? 
+                                `<video controls>
+                                    <source src="/${chamado.midia}" type="video/mp4">
+                                </video>` : 
+                                `<img src="/${chamado.midia}" alt="Mídia do chamado">`}
+                        </div>` : ''}
+                        
+                        <span class="chamado-data">${formatarData(chamado.criadoEm)}</span>
+                        
+                        <div class="chamado-actions">
+                            <button onclick="atualizarStatus('${chamado._id}', 'atendido')" 
+                                    class="action-btn btn-atendido ${chamado.status === 'atendido' ? 'btn-disabled' : ''}">
+                                <i class="fas fa-check"></i> Atendido
+                            </button>
+                            <button onclick="atualizarStatus('${chamado._id}', 'nao-atendido')" 
+                                    class="action-btn btn-nao-atendido ${chamado.status === 'nao-atendido' ? 'btn-disabled' : ''}">
+                                <i class="fas fa-times"></i> Não Atendido
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                console.error('Erro:', error);
+                container.innerHTML = `
+                    <div class="error-message">
+                        Erro ao carregar chamados: ${error.message}
+                        <button onclick="carregarChamados()" class="action-btn btn-atendido" style="margin-top: 15px;">
+                            <i class="fas fa-sync-alt"></i> Tentar novamente
+                        </button>
+                    </div>`;
+            }
+        }
+        
+        function formatarStatus(status) {
+            const statusMap = {
+                'pendente': 'PENDENTE',
+                'atendido': 'ATENDIDO',
+                'nao-atendido': 'NÃO ATENDIDO'
+            };
+            return statusMap[status] || status.toUpperCase();
+        }
+        
+        function formatarData(dataString) {
+            const data = new Date(dataString);
+            return data.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+        
+        async function atualizarStatus(id, novoStatus) {
+            if (confirm(`Deseja realmente marcar este chamado como ${formatarStatus(novoStatus).toLowerCase()}?`)) {
+                try {
+                    const response = await fetch(`/api/chamados/${id}/status`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ status: novoStatus })
+                    });
+                    
+                    const { success } = await response.json();
+                    
+                    if (success) {
+                        // Recarrega os chamados com os filtros atuais
+                        const statusFiltro = document.getElementById('filtro-status').value;
+                        carregarChamados(statusFiltro ? { status: statusFiltro } : {});
+                    } else {
+                        alert('Erro ao atualizar status');
+                    }
+                } catch (error) {
+                    console.error('Erro:', error);
+                    alert('Erro ao atualizar status');
+                }
+            }
+        }
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            carregarChamados();
+            
+            document.getElementById('btn-filtrar').addEventListener('click', () => {
+                const status = document.getElementById('filtro-status').value;
+                carregarChamados(status ? { status } : {});
+            });
+        });
+    </script>
+</body>
+</html>

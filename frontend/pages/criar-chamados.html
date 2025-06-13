@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denúncia de Problemas</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto", Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #26c99b;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #f0f0f0;
+            text-decoration: underline;
+        }
+
+        .icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .icons a {
+            color: white;
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+
+        .icons a:hover {
+            transform: scale(1.2);
+        }
+
+        #main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1400px;
+            min-height: calc(100vh - 100px);
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: white;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .page-title p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        /* Estilos do formulário */
+        .report-form {
+            width: 100%;
+            max-width: 800px;
+            background-color: #26c99b;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: rgba(255,255,255,0.9);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .file-input-container {
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .file-input-label {
+            display: inline-block;
+            background-color: #2c856b;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            width: 100%;
+        }
+
+        .file-input-label:hover {
+            background-color: #349e7e;
+        }
+
+        .file-input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-name {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #f0f0f0;
+        }
+
+        .submit-btn {
+            background-color: #2c856b;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #349e7e;
+            transform: translateY(-2px);
+        }
+
+        #message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+            display: block !important;
+        }
+
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+            display: block !important;
+        }
+
+        /* Estilos da lista de chamados */
+        .chamados-container {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .chamados-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .chamados-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .chamado-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .chamado-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .chamado-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .chamado-bairro {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .chamado-status {
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-pendente {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .status-atendido {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .status-nao-atendido {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .chamado-rua {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .chamado-relato {
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .chamado-midia {
+            margin-top: 15px;
+        }
+
+        .chamado-midia img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .chamado-data {
+            color: #777;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            display: block;
+        }
+
+        .sem-chamados {
+            text-align: center;
+            color: #777;
+            padding: 40px;
+            font-size: 1.2rem;
+            grid-column: 1 / -1;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header section {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .page-title p {
+                font-size: 1rem;
+            }
+
+            .report-form {
+                padding: 20px;
+            }
+
+            .chamados-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title h1 {
+                font-size: 1.8rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 10px;
+            }
+
+            .submit-btn {
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <section>
+            <a href="/" target="_self">
+                <img class="logo" src="/assets/img/header.png" alt="logo">
+            </a>
+
+            <nav class="navbar">
+                <a href="educaçao.html" target="_self">Página de Conscientização</a>
+                <a href="AlertasG">Alertas Geológicos</a>
+                <a href="AlertasP">Alerta Pluviométrico</a>
+                <a href="denuncias.html" target="_self">Denúncia de Problemas</a>
+            </nav>
+
+            <div class="icons">
+                <a href="URL_DO_YOUTUBE" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="URL_DO_FACEBOOK" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="URL_DO_INSTAGRAM" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="URL_DO_LINKEDIN" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </section>
+    </header>
+
+    <main id="main">
+        <div class="page-title">
+            <h1>Denúncia de Problemas</h1>
+            <p>Faça sua denúncia pelo formulário abaixo</p>
+        </div>
+        
+        <!-- Formulário de denúncia -->
+        <form id="formDenuncia" class="report-form" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="bairro">Bairro *</label>
+                <input type="text" id="bairro" name="bairro" placeholder="Informe o bairro" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="rua">Rua *</label>
+                <input type="text" id="rua" name="rua" placeholder="Informe a rua" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="relato">Relate o ocorrido *</label>
+                <textarea id="relato" name="relato" placeholder="Descreva o problema com detalhes" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="midia">Imagem do ocorrido</label>
+                <div class="file-input-container">
+                    <label for="midia" class="file-input-label">
+                        <i class="fas fa-camera"></i> Selecione uma imagem
+                    </label>
+                    <input type="file" id="midia" name="midia" accept="image/*" class="file-input">
+                    <div id="fileName" class="file-name"></div>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">Enviar Denúncia</button>
+            
+            <div id="message"></div>
+        </form>
+        
+        <!-- Lista de chamados -->
+        <div class="chamados-container">
+            <h2 class="chamados-title">Últimos Chamados Registrados</h2>
+            <div id="listaChamados" class="chamados-list">
+                <!-- Chamados serão carregados aqui via JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Mostrar nome do arquivo selecionado
+        document.getElementById('midia').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'Nenhum arquivo selecionado';
+            document.getElementById('fileName').textContent = fileName;
+        });
+
+        // Enviar formulário
+        document.getElementById('formDenuncia').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            try {
+                const response = await fetch('/api/chamados', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showMessage('Denúncia enviada com sucesso!');
+                    this.reset();
+                    document.getElementById('fileName').textContent = '';
+                    carregarChamados(); // Atualiza a lista de chamados
+                } else {
+                    showMessage(`Erro: ${data.error || 'Falha ao enviar denúncia'}`, true);
+                }
+            } catch (error) {
+                showMessage('Erro ao conectar com o servidor', true);
+                console.error('Erro:', error);
+            }
+        });
+
+        // Função para mostrar mensagens
+        function showMessage(text, isError = false) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = isError ? 'error' : 'success';
+            
+            setTimeout(() => {
+                messageDiv.textContent = '';
+                messageDiv.className = '';
+            }, 5000);
+        }
+
+        // Carregar lista de chamados
+        async function carregarChamados() {
+            try {
+                const response = await fetch('/api/chamados');
+                const { data } = await response.json();
+                
+                const lista = document.getElementById('listaChamados');
+                
+                if (data.length === 0) {
+                    lista.innerHTML = '<div class="sem-chamados">Nenhum chamado encontrado</div>';
+                    return;
+                }
+                
+                lista.innerHTML = data.map(chamado => `
+                    <div class="chamado-card">
+                        <div class="chamado-header">
+                            <div class="chamado-bairro">${chamado.bairro}</div>
+                            <div class="chamado-status status-${chamado.status.replace(' ', '-')}">
+                                ${formatarStatus(chamado.status)}
+                            </div>
+                        </div>
+                        <div class="chamado-rua">${chamado.rua}</div>
+                        <div class="chamado-relato">${chamado.relato}</div>
+                        ${chamado.midia ? `
+                        <div class="chamado-midia">
+                            <img src="${chamado.midia}" alt="Imagem do chamado">
+                        </div>` : ''}
+                        <span class="chamado-data">${formatarData(chamado.criadoEm)}</span>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Erro ao carregar chamados:', error);
+                document.getElementById('listaChamados').innerHTML = 
+                    '<div class="sem-chamados error">Erro ao carregar chamados</div>';
+            }
+        }
+
+        function formatarStatus(status) {
+            const statusMap = {
+                'pendente': 'PENDENTE',
+                'atendido': 'ATENDIDO',
+                'nao-atendido': 'NÃO ATENDIDO'
+            };
+            return statusMap[status] || status.toUpperCase();
+        }
+
+        function formatarData(dataString) {
+            const data = new Date(dataString);
+            return data.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        // Carregar chamados quando a página é aberta
+        document.addEventListener('DOMContentLoaded', carregarChamados);
+    </script>
+</body>
+</html>
