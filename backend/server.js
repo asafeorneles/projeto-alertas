@@ -28,6 +28,10 @@ app.use('/api/chamados', require('./routes/chamados'));
 app.use('/api/alertas', require('./routes/alertas'));
 
 // Rotas para páginas
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
+
 app.get('/criarchamado', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/pages/criar-chamados.html'));
 });
