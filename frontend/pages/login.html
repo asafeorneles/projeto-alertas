@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Admin</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <main>
+    <h2>Login Admin</h2>
+    <form id="loginForm">
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" required>
+
+      <button type="submit">Entrar</button>
+    </form>
+
+    <p id="erro" style="color: red;"></p>
+  </main>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const erro = document.getElementById('erro');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, senha })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // Salvar o token no localStorage
+          localStorage.setItem('token', data.token);
+          // Redirecionar para admin-alertas
+          window.location.href = '/admin-alertas';
+        } else {
+          erro.textContent = data.error || 'Erro ao fazer login.';
+        }
+      } catch (err) {
+        erro.textContent = 'Erro de conexão com o servidor.';
+      }
+    });
+  </script>
+</body>
+</html>

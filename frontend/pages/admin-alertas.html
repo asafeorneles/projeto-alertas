@@ -204,144 +204,158 @@
             button {
                 padding: 12px 20px;
             }
-        }
-    </style>
+        }#logoutBtn {
+      background-color: #e74c3c;
+      margin-top: 30px;
+    }
+
+    #logoutBtn:hover {
+      background-color: #c0392b;
+    }
+  </style>
 </head>
 <body>
-    <header class="header">
-        <section>
-            <a href="/" target="_self">
-                <img class="logo" src="/assets/img/header.png" alt="logo">
-            </a>
+  <script>
+    // Verifica se o token está presente, se não, redireciona para login
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = '/login';
+    }
+  </script>
 
-            <nav class="navbar">
-                <a href="educaçao.html" target="_self">Página de Conscientização</a>
-                <a href="AlertasG">Alertas Geológicos</a>
-                <a href="AlertasP">Alerta Pluviométrico</a>
-                <a href="denuncias.html" target="_self">Denúncia de Problemas</a>
-            </nav>
+  <header class="header">
+    <section>
+      <a href="/" target="_self">
+        <img class="logo" src="/assets/img/header.png" alt="logo">
+      </a>
 
-            <div class="icons">
-                <a href="URL_DO_YOUTUBE" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="URL_DO_FACEBOOK" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="URL_DO_INSTAGRAM" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="URL_DO_LINKEDIN" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            </div>
-        </section>
-    </header>
+      <nav class="navbar">
+        <a href="educaçao.html" target="_self">Página de Conscientização</a>
+        <a href="AlertasG">Alertas Geológicos</a>
+        <a href="AlertasP">Alerta Pluviométrico</a>
+        <a href="denuncias.html" target="_self">Denúncia de Problemas</a>
+      </nav>
 
-    <main id="main">
-        <h1>Cadastrar Novo Alerta</h1>
-        
-        <div class="form-container">
-            <div class="form-group">
-                <label for="tipo">Tipo de Alerta *</label>
-                <select id="tipo" required>
-                    <option value="">Selecione o tipo...</option>
-                    <option value="deslizamento">Deslizamento</option>
-                    <option value="rachadura">Rachadura</option>
-                    <option value="desabamento">Desabamento</option>
-                    <option value="outros">Outros</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="bairro">Bairro *</label>
-                <input type="text" id="bairro" placeholder="Nome do bairro" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="rua">Rua</label>
-                <input type="text" id="rua" placeholder="Nome da rua (opcional)">
-            </div>
-            
-            <div class="form-group">
-                <label for="descricao">Descrição *</label>
-                <textarea id="descricao" placeholder="Descreva o alerta com detalhes" required></textarea>
-            </div>
-            
-            <div class="form-group">
-                <label for="gravidade">Gravidade</label>
-                <select id="gravidade">
-                    <option value="media">Média</option>
-                    <option value="baixa">Baixa</option>
-                    <option value="alta">Alta</option>
-                </select>
-            </div>
-            
-            <button onclick="cadastrarAlerta()">Cadastrar Alerta</button>
-            
-            <div id="message"></div>
-        </div>
-    </main>
+      <div class="icons">
+        <a href="URL_DO_YOUTUBE" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="URL_DO_FACEBOOK" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="URL_DO_INSTAGRAM" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="URL_DO_LINKEDIN" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </section>
+  </header>
 
-    <script>
-        async function cadastrarAlerta() {
-            // Pegar valores dos campos
-            const tipo = document.getElementById('tipo').value;
-            const bairro = document.getElementById('bairro').value;
-            const rua = document.getElementById('rua').value;
-            const descricao = document.getElementById('descricao').value;
-            const gravidade = document.getElementById('gravidade').value;
-            
-            // Validar campos obrigatórios
-            if (!tipo || !bairro || !descricao) {
-                showMessage('Por favor, preencha todos os campos obrigatórios (*)', true);
-                return;
-            }
-            
-            // Criar objeto do alerta
-            const alerta = {
-                tipo: tipo,
-                localizacao: {
-                    bairro: bairro,
-                    rua: rua
-                },
-                descricao: descricao,
-                gravidade: gravidade,
-                fonte: "manual"
-            };
-            
-            try {
-                // Enviar para a API
-                const response = await fetch('/api/alertas', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(alerta)
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    showMessage('Alerta cadastrado com sucesso!');
-                    // Limpar formulário
-                    document.getElementById('tipo').value = '';
-                    document.getElementById('bairro').value = '';
-                    document.getElementById('rua').value = '';
-                    document.getElementById('descricao').value = '';
-                    document.getElementById('gravidade').value = 'media';
-                } else {
-                    showMessage(`Erro: ${data.error || 'Falha ao cadastrar'}`, true);
-                }
-            } catch (error) {
-                showMessage('Erro ao conectar com o servidor', true);
-                console.error('Erro:', error);
-            }
+  <main id="main">
+    <h1>Cadastrar Novo Alerta</h1>
+
+    <div class="form-container">
+      <div class="form-group">
+        <label for="tipo">Tipo de Alerta *</label>
+        <select id="tipo" required>
+          <option value="">Selecione o tipo...</option>
+          <option value="deslizamento">Deslizamento</option>
+          <option value="rachadura">Rachadura</option>
+          <option value="desabamento">Desabamento</option>
+          <option value="outros">Outros</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="bairro">Bairro *</label>
+        <input type="text" id="bairro" placeholder="Nome do bairro" required>
+      </div>
+
+      <div class="form-group">
+        <label for="rua">Rua</label>
+        <input type="text" id="rua" placeholder="Nome da rua (opcional)">
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descrição *</label>
+        <textarea id="descricao" placeholder="Descreva o alerta com detalhes" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="gravidade">Gravidade</label>
+        <select id="gravidade">
+          <option value="media">Média</option>
+          <option value="baixa">Baixa</option>
+          <option value="alta">Alta</option>
+        </select>
+      </div>
+
+      <button onclick="cadastrarAlerta()">Cadastrar Alerta</button>
+      <button id="logoutBtn" onclick="logout()">Sair</button>
+
+      <div id="message"></div>
+    </div>
+  </main>
+
+  <script>
+    async function cadastrarAlerta() {
+      const tipo = document.getElementById('tipo').value;
+      const bairro = document.getElementById('bairro').value;
+      const rua = document.getElementById('rua').value;
+      const descricao = document.getElementById('descricao').value;
+      const gravidade = document.getElementById('gravidade').value;
+
+      if (!tipo || !bairro || !descricao) {
+        showMessage('Por favor, preencha todos os campos obrigatórios (*)', true);
+        return;
+      }
+
+      const alerta = {
+        tipo,
+        localizacao: { bairro, rua },
+        descricao,
+        gravidade,
+        fonte: "manual"
+      };
+
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('/api/alertas', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+          },
+          body: JSON.stringify(alerta)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          showMessage('Alerta cadastrado com sucesso!');
+          document.getElementById('tipo').value = '';
+          document.getElementById('bairro').value = '';
+          document.getElementById('rua').value = '';
+          document.getElementById('descricao').value = '';
+          document.getElementById('gravidade').value = 'media';
+        } else {
+          showMessage(`Erro: ${data.error || 'Falha ao cadastrar'}`, true);
         }
-        
-        function showMessage(text, isError = false) {
-            const messageDiv = document.getElementById('message');
-            messageDiv.textContent = text;
-            messageDiv.className = isError ? 'error' : 'success';
-            
-            // Limpar mensagem após 5 segundos
-            setTimeout(() => {
-                messageDiv.textContent = '';
-                messageDiv.className = '';
-            }, 5000);
-        }
-    </script>
+      } catch (error) {
+        showMessage('Erro ao conectar com o servidor', true);
+        console.error('Erro:', error);
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
+
+    function showMessage(text, isError = false) {
+      const messageDiv = document.getElementById('message');
+      messageDiv.textContent = text;
+      messageDiv.className = isError ? 'error' : 'success';
+
+      setTimeout(() => {
+        messageDiv.textContent = '';
+        messageDiv.className = '';
+      }, 5000);
+    }
+  </script>
 </body>
 </html>

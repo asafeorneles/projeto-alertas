@@ -5,29 +5,31 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 dotenv.config();
-
 const app = express();
 
-// Middlewares
+// Middlewares globais
 app.use(cors());
 app.use(express.json());
 
-// Servir arquivos estáticos
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(express.static(path.join(__dirname, '../frontend')));
-app.use('/assets', express.static(path.join(__dirname, '../frontend/assets')));
-
+// Rota de autenticação
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
 
 // Conexão com MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Conectado ao MongoDB!"))
   .catch(err => console.log("❌ Erro MongoDB:", err));
 
-// Rotas da API
+// API protegidas
 app.use('/api/chamados', require('./routes/chamados'));
-app.use('/api/alertas', require('./routes/alertas'));
+app.use('/api/alertas', require('./routes/alertas')); // essa já está protegida via middleware na própria rota
 
-// Rotas para páginas
+// Arquivos estáticos
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, '../frontend')));
+app.use('/assets', express.static(path.join(__dirname, '../frontend/assets')));
+
+// Páginas públicas
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
@@ -42,6 +44,10 @@ app.get('/chamados', (req, res) => {
 
 app.get('/alertas', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/pages/alertas.html'));
+});
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/pages/login.html'));
 });
 
 app.get('/admin-alertas', (req, res) => {
