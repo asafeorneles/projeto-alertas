@@ -62,7 +62,7 @@ exports.listarAlertas = async (req, res) => {
   }
 };
 
-// Atualizar alerta (opcional)
+// Atualizar alerta
 exports.atualizarAlerta = async (req, res) => {
   try {
     const { id } = req.params;
@@ -94,7 +94,7 @@ exports.atualizarAlerta = async (req, res) => {
   }
 };
 
-// Deletar alerta (opcional)
+// Deletar alerta
 exports.deletarAlerta = async (req, res) => {
   try {
     const { id } = req.params;

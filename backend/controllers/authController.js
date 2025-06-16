@@ -2,7 +2,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 const gerarToken = (id) => {
-  return jwt.sign({ id }, 'secreto', { expiresIn: '2h' }); // Troque 'secreto' por uma env var depois
+  return jwt.sign({ id }, 'secreto', { expiresIn: '2h' });
 };
 
 // Registrar usuário (admin)
