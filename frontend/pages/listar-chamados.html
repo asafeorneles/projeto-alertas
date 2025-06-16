@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="shortcut icon" href="/projeto-alertas/frontend/assets/img/BH Alerta favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/img/BH Alerta favicon.png" type="image/x-icon">
     <style>
         * {
             margin: 0;
@@ -343,22 +343,22 @@
 <body>
     <header class="header">
         <section>
-            <a href="/projeto-alertas/frontend/index.html" target="_self">
-                <img class="logo" src="/projeto-alertas/frontend/assets/img/header.png" alt="logo">
+            <a href="/index.html" target="_self">
+                <img class="logo" src="/assets/img/header.png" alt="logo">
             </a>
 
             <nav class="navbar">
-                <a href="/projeto-alertas/frontend/index.html">Home</a>
-                <a href="/projeto-alertas/frontend/pages/Alertas.html">Alertas</a>
-                <a href="/projeto-alertas/frontend/pages/educacao.html" target="_self">Página de Conscientização</a>
-                <a href="/projeto-alertas/frontend/pages/criar-chamados.html" target="_self">Denúnciar Problemas</a>
+                <a href="/index.html">Home</a>
+                <a href="/pages/Alertas.html">Alertas</a>
+                <a href="/pages/educacao.html" target="_self">Página de Conscientização</a>
+                <a href="/pages/criar-chamados.html" target="_self">Denúnciar Problemas</a>
             </nav>
 
             <div class="icons">
-                <a href="URL_DO_YOUTUBE" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="URL_DO_FACEBOOK" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="URL_DO_INSTAGRAM" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="URL_DO_LINKEDIN" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/matheusss7/projeto-alertas.git" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
         </section>
     </header>
@@ -387,13 +387,11 @@
     </div>
 
     <script>
-        // Função para carregar chamados com filtro
         async function carregarChamados(filtro = {}) {
             const container = document.getElementById('chamados-container');
             container.innerHTML = '<div class="loading">Carregando chamados...</div>';
             
             try {
-                // Construir URL com filtros
                 const params = new URLSearchParams();
                 if (filtro.status) params.append('status', filtro.status);
                 
@@ -489,7 +487,6 @@
                     const { success } = await response.json();
                     
                     if (success) {
-                        // Recarrega os chamados com os filtros atuais
                         const statusFiltro = document.getElementById('filtro-status').value;
                         carregarChamados(statusFiltro ? { status: statusFiltro } : {});
                     } else {
@@ -502,7 +499,6 @@
             }
         }
         
-        // Event listeners
         document.addEventListener('DOMContentLoaded', () => {
             carregarChamados();
             

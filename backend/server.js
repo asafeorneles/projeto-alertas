@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 // API protegidas
 app.use('/api/chamados', require('./routes/chamados'));
-app.use('/api/alertas', require('./routes/alertas')); // essa já está protegida via middleware na própria rota
+app.use('/api/alertas', require('./routes/alertas'));
 
 // Arquivos estáticos
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

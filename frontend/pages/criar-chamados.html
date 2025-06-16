@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/projeto-alertas/frontend/assets/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
     <title>Denúncia de Problemas</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -368,24 +368,24 @@
 <body>
     <header class="header">
         <section>
-            <a href="/projeto-alertas/frontend/index.html" target="_self">
-                <img class="logo" src="/projeto-alertas/frontend/assets/img/header.png" alt="logo">
+            <a href="/index.html" target="_self">
+                <img class="logo" src="/assets/img/header.png" alt="logo">
             </a>
 
             <nav class="navbar">
-                <a href="/projeto-alertas/frontend/index.html" >Home</a>
-                <a href="/projeto-alertas/frontend/pages/Alertas.html" >Alertas</a>
-                <a href="/projeto-alertas/frontend/pages/listar-chamados.html">Lista de Chamados</a>
-                <a href="/projeto-alertas/frontend/pages/educacao.html" >Página de Conscientização</a>
+                <a href="/index.html" >Home</a>
+                <a href="/pages/Alertas.html" >Alertas</a>
+                <a href="/pages/listar-chamados.html">Lista de Chamados</a>
+                <a href="/pages/educacao.html" >Página de Conscientização</a>
             </nav>
                 
             </nav>
 
             <div class="icons">
-                <a href="URL_DO_YOUTUBE" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="URL_DO_FACEBOOK" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="URL_DO_INSTAGRAM" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="URL_DO_LINKEDIN" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/matheusss7/projeto-alertas.git" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
         </section>
     </header>
@@ -396,7 +396,6 @@
             <p>Faça sua denúncia pelo formulário abaixo</p>
         </div>
         
-        <!-- Formulário de denúncia -->
         <form id="formDenuncia" class="report-form" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="bairro">Bairro *</label>
@@ -429,23 +428,19 @@
             <div id="message"></div>
         </form>
         
-        <!-- Lista de chamados -->
         <div class="chamados-container">
             <h2 class="chamados-title">Últimos Chamados Registrados</h2>
             <div id="listaChamados" class="chamados-list">
-                <!-- Chamados serão carregados aqui via JavaScript -->
             </div>
         </div>
     </main>
 
     <script>
-        // Mostrar nome do arquivo selecionado
         document.getElementById('midia').addEventListener('change', function(e) {
             const fileName = e.target.files[0] ? e.target.files[0].name : 'Nenhum arquivo selecionado';
             document.getElementById('fileName').textContent = fileName;
         });
 
-        // Enviar formulário
         document.getElementById('formDenuncia').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -463,7 +458,7 @@
                     showMessage('Denúncia enviada com sucesso!');
                     this.reset();
                     document.getElementById('fileName').textContent = '';
-                    carregarChamados(); // Atualiza a lista de chamados
+                    carregarChamados();
                 } else {
                     showMessage(`Erro: ${data.error || 'Falha ao enviar denúncia'}`, true);
                 }
@@ -473,7 +468,6 @@
             }
         });
 
-        // Função para mostrar mensagens
         function showMessage(text, isError = false) {
             const messageDiv = document.getElementById('message');
             messageDiv.textContent = text;
@@ -485,7 +479,6 @@
             }, 5000);
         }
 
-        // Carregar lista de chamados
         async function carregarChamados() {
             try {
                 const response = await fetch('/api/chamados');
@@ -542,7 +535,6 @@
             });
         }
 
-        // Carregar chamados quando a página é aberta
         document.addEventListener('DOMContentLoaded', carregarChamados);
     </script>
 </body>

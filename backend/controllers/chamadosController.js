@@ -32,7 +32,7 @@ exports.criarChamado = async (req, res) => {
   }
 };
 
-// Novo método para listar chamados
+// Método para listar chamados
 exports.listarChamados = async (req, res) => {
   try {
     const chamados = await Chamado.find().sort({ criadoEm: -1 });
@@ -42,7 +42,7 @@ exports.listarChamados = async (req, res) => {
   }
 };
 
-// Novo método para atualizar status
+// Método para atualizar status
 exports.atualizarStatus = async (req, res) => {
   try {
     const { id } = req.params;

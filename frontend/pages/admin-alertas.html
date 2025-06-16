@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Alertas</title>
-    <link rel="shortcut icon" href="/projeto-alertas/frontend/assets/img/BH Alerta favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/img/BH Alerta favicon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -216,7 +216,6 @@
 </head>
 <body>
   <script>
-    // Verifica se o token está presente, se não, redireciona para login
     const token = localStorage.getItem('token');
     if (!token) {
       window.location.href = '/login';
@@ -225,22 +224,16 @@
 
   <header class="header">
     <section>
-      <a href="/projeto-alertas/frontend/index.html" target="_self">
-        <img class="logo" src="/projeto-alertas/frontend/assets/img/header.png" alt="logo">
+      <a href="/index.html" target="_self">
+        <img class="logo" src="/assets/img/header.png" alt="logo">
       </a>
 
       <nav class="navbar">
-        <a href="AlertasP">Alerta</a>
-        <a href="educaçao.html" target="_self">Página de Conscientização</a>
-        <a href="denuncias.html" target="_self">Denúnciar Problemas</a>
+        <a href="/pages/Alertas.html">Alerta</a>
+        <a href="/pages/educaçao.html" target="_self">Página de Conscientização</a>
+        <a href="/pages/denuncias.html" target="_self">Denúnciar Problemas</a>
       </nav>
 
-      <div class="icons">
-        <a href="URL_DO_YOUTUBE" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="URL_DO_FACEBOOK" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-        <a href="URL_DO_INSTAGRAM" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="URL_DO_LINKEDIN" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      </div>
     </section>
   </header>
 

@@ -239,23 +239,23 @@
 <body>
     <header class="header">
         <section>
-            <a href="/projeto-alertas/frontend/index.html" target="_self">
-                <img class="logo" src="/projeto-alertas/frontend/assets/img/header.png" alt="logo">
+            <a href="/index.html" target="_self">
+                <img class="logo" src="/assets/img/header.png" alt="logo">
             </a>
 
             <nav class="navbar">
-                <a href="/projeto-alertas/frontend/index.html" >Home</a>
-                <a href="/projeto-alertas/frontend/pages/educacao.html">Página de Conscientização</a>
-                <a href="/projeto-alertas/frontend/pages/criar-chamados.html" >Denúnciar Problemas</a>
-                <a href="/projeto-alertas/frontend/pages/listar-chamados.html">Lista de Chamados </a>
+                <a href="/index.html" >Home</a>
+                <a href="/pages/educacao.html">Página de Conscientização</a>
+                <a href="/pages/criar-chamados.html" >Denúnciar Problemas</a>
+                <a href="/pages/listar-chamados.html">Lista de Chamados </a>
             </nav>
 
 
             <div class="icons">
-                <a href="URL_DO_YOUTUBE" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="URL_DO_FACEBOOK" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="URL_DO_INSTAGRAM" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="URL_DO_LINKEDIN" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/matheusss7/projeto-alertas.git" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
         </section>
     </header>
@@ -274,14 +274,12 @@
         </div>
 
         <div id="lista-alertas" class="lista-alertas">
-            <!-- Alertas serão carregados aqui via JavaScript -->
         </div>
     </main>
 
     <script>
         async function carregarAlertas(filtro = {}) {
             try {
-                // Adiciona filtro se existir
                 const url = filtro.gravidade 
                     ? `/api/alertas?gravidade=${filtro.gravidade}`
                     : '/api/alertas';
@@ -346,13 +344,11 @@
             });
         }
 
-        // Filtros
         document.getElementById('btn-atualizar').addEventListener('click', () => {
             const gravidade = document.getElementById('filtro-gravidade').value;
             carregarAlertas(gravidade ? { gravidade } : {});
         });
 
-        // Carrega os alertas quando a página é aberta
         document.addEventListener('DOMContentLoaded', () => carregarAlertas());
     </script>
 </body>
