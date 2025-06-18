@@ -185,7 +185,6 @@
             const data = await response.json();
 
             if (response.ok) {
-                // Salvar o token no localStorage
                 localStorage.setItem('token', data.token);
                 // Redirecionar para dashboard admin
                 window.location.href = '/admin-dashboard';
