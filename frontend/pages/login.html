@@ -166,37 +166,37 @@
     </div>
 
     <script>
-        const form = document.getElementById('loginForm');
-        const erro = document.getElementById('erro');
+    const form = document.getElementById('loginForm');
+    const erro = document.getElementById('erro');
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-            const email = document.getElementById('email').value;
-            const senha = document.getElementById('senha').value;
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
 
-            try {
-                const response = await fetch('/api/auth/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, senha })
-                });
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, senha })
+            });
 
-                const data = await response.json();
+            const data = await response.json();
 
-                if (response.ok) {
-                    // Salvar o token no localStorage
-                    localStorage.setItem('token', data.token);
-                    // Redirecionar para admin-alertas
-                    window.location.href = '/admin-alertas';
-                } else {
-                    erro.textContent = data.error || 'Erro ao fazer login.';
-                }
-            } catch (err) {
-                erro.textContent = 'Erro de conexão com o servidor.';
+            if (response.ok) {
+                // Salvar o token no localStorage
+                localStorage.setItem('token', data.token);
+                // Redirecionar para dashboard admin
+                window.location.href = '/admin-dashboard';
+            } else {
+                erro.textContent = data.error || 'Erro ao fazer login.';
             }
-        });
-    </script>
+        } catch (err) {
+            erro.textContent = 'Erro de conexão com o servidor.';
+        }
+    });
+</script>
 </body>
 
 </html>

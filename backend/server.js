@@ -50,6 +50,10 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/pages/login.html'));
 });
 
+app.get('/admin-dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/pages/admin-dashboard.html'));
+});
+
 app.get('/admin-alertas', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/pages/admin-alertas.html'));
 });
